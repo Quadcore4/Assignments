@@ -1,0 +1,114 @@
+The birthday problem is to find the probability that, in a group of N people, there is at least one pair of people who have the same birthday.
+For simplicity, disregard variations in the distribution, such as leap years, twins, seasonal or weekday variations, and assume that the 365 possible birthdays are equally likely.
+Therefore probability of a given birthday for a person chosen from the entire population at random is 1/365.
+
+No of Trials = 30
+No of people = 23
+
+Probability at each trial for 23 no of people
+Trial No.	Probability
+
+1	0.0000
+2	0.0000
+3	0.3333
+4	0.5000
+5	0.2000
+6	0.5000
+7	0.7143
+8	0.5000
+9	0.3333
+10	0.6000
+11	0.5455
+12	0.5000
+13	0.6923
+14	0.5000
+15	0.7333
+16	0.5000
+17	0.4706
+18	0.5556
+19	0.6842
+20	0.4000
+21	0.4286
+22	0.5455
+23	0.4348
+24	0.5417
+25	0.4800
+26	0.4231
+27	0.5556
+28	0.5000
+29	0.6207
+30	0.5000
+Average of all probabilities for 23 no of people = 0.4764
+
+No of Trials = 40
+No of people = 57
+
+Probability at each trial for 57 no of people
+Trial No.	Probability
+
+1	1.0000
+2	1.0000
+3	1.0000
+4	1.0000
+5	0.8000
+6	1.0000
+7	1.0000
+8	1.0000
+9	1.0000
+10	1.0000
+11	1.0000
+12	1.0000
+13	1.0000
+14	1.0000
+15	1.0000
+16	1.0000
+17	0.9412
+18	1.0000
+19	1.0000
+20	0.9500
+21	1.0000
+22	1.0000
+23	1.0000
+24	1.0000
+25	0.9600
+26	1.0000
+27	1.0000
+28	1.0000
+29	1.0000
+30	0.9667
+31	1.0000
+32	0.9688
+33	0.9697
+34	1.0000
+35	1.0000
+36	1.0000
+37	1.0000
+38	0.9737
+39	1.0000
+40	1.0000
+Average of all probabilities for 57 no of people = 0.9882
+
+Result for 100 trials each
+
+No of people	Probability
+
+5		0.0400
+10		0.1600
+15		0.2600
+20		0.4000
+25		0.5000
+30		0.7100
+35		0.8300
+40		0.9200
+45		0.9600
+50		0.9400
+55		0.9800
+60		0.9900
+65		1.0000
+70		1.0000
+75		1.0000
+80		1.0000
+
+Hence we see that the probability increases as the no of people increases.
+At 23 it becomes 50% and after 57 it becomes constant i.e. 100%.
+This proves that Birthday Paradox is indeed correct!
