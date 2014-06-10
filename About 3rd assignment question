@@ -1,0 +1,5 @@
+A pcap file is one that saves the captured packets. We have created a code here to display the number of pcap files being passed, number of packets in each pcap file, number of bytes in the file and the total size of the file.
+
+To do so, we have made use of certain library functions such as pcap_next, pcap_open_offline, etc.
+
+Effectively, we have created a primitive version of today's packet analyzers.
