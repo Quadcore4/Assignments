@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <pcap.h>
+#include <stdlib.h>
+#include <netinet/ip.h>
+#include <arpa/inet.h>
+
+//for packet type code in an ETHERNET header
+#define ETHER_TYPE_IP (0x0800)
+#define ETHER_TYPE_8021Q (0x8100)
+
+
+int main(int argc, char **argv) 
+{ 
+unsigned int pkt_counter=0;  	//packet counter
+unsigned long byte_counter=0;	//total bytes seen in entire trace
+unsigned long byte_countermb=0;//total bytes in MB
+unsigned long cur_counter=0;	//counter for current 1-second interval
+unsigned long max_volume = 0;	//max value of bytes in 1-second interval
+unsigned long current_ts=0;		//current timestamp
+struct pcap_pkthdr header;		//header given by pcap
+const u_char *packet;		//this is THE actual packet
+int fnum;
+
+
+if (argc < 2)  //to ensure cmd arguments are correct
+{ 
+	fprintf(stderr, "Usage: %s [input pcaps]\n", argv[0]); 
+    	exit(1); 
+} 
+  
+
+//packet processing loop
+for (fnum=1; fnum < argc; fnum++)	//looping through each pcap file that is passed as parameter
+{
+	pcap_t *handle; 
+    	char errbuf[PCAP_ERRBUF_SIZE];
+	handle = pcap_open_offline(argv[fnum], errbuf);	//pcap library functions
+	if(handle == NULL)	//not a valid pcap file
+	{
+     		fprintf(stderr,"Couldn't open pcap file %s: %s\n", argv[fnum], errbuf); 
+      	return(2); 
+    	} 
+
+
+//after valid input has been checked, processing of packets in files begins
+
+while(packet = pcap_next(handle,&header))	//traversing packets, one at a time; header has info about the packet 
+{
+	u_char *pkt_ptr = (u_char *)packet;	//setting a pointer to the packet data
+	int ether_type = ((int)(pkt_ptr[12]) << 8) | (int)pkt_ptr[13];
+	int ether_offset = 0; 
+
+//to jump to necessary information in the header, offsets are needed
+if(ether_type == ETHER_TYPE_IP)
+	ether_offset = 14; 
+else if (ether_type == ETHER_TYPE_8021Q)
+ 	ether_offset = 18; 
+else 
+	fprintf(stderr, "Unknown ethernet type, %04X, skipping..\n", ether_type); 
+
+
+//parsing IP header
+pkt_ptr += ether_offset;	//skipping past Ethernet header
+struct ip *ip_hdr = (struct ip *)pkt_ptr;	//point to IP header structure
+
+int packet_length = ntohs(ip_hdr->ip_len); 
+
+//checking if next second has started
+if(current_ts == 0) 
+{
+	current_ts = header.ts.tv_sec; 
+} 
+else if(header.ts.tv_sec > current_ts) 
+{ 
+	printf("%lu KBps\n", cur_counter/1000);	//printing
+     cur_counter = 0;		//resetting counters
+     current_ts = header.ts.tv_sec;	//time interval is updated
+} 
+
+cur_counter += packet_length;	//updating counter
+byte_counter += packet_length;	//updating byte counter
+pkt_counter++;	//incrementing number of packets
+}	//packets of one file processed
+
+pcap_close(handle);	//closing pcap file
+ 
+} //processing of one argument passed done
+
+//printing data gathered about the pcap files
+
+printf("Processed file: \n\t %d packets \n\t %lu bytes (%lu MB) \n\t %d files \n\t %lu  time of last packet in seconds   \n", pkt_counter, byte_counter, byte_countermb, argc-1, current_ts);
+
+return 0;
+}
