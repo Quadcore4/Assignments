@@ -1,0 +1,94 @@
+ishita@ishita-VPCEH25EN:~/Desktop$ sudo apt-get install libpcap0.8-dev
+ishita@ishita-VPCEH25EN:~/Desktop$ gcc pcap1.c -o p -lpcap
+ishita@ishita-VPCEH25EN:~/Desktop$ ./p 1.pcap
+0 KBps
+1 KBps
+2 KBps
+1 KBps
+1 KBps
+1 KBps
+0 KBps
+2 KBps
+1 KBps
+0 KBps
+1 KBps
+1 KBps
+1 KBps
+1 KBps
+1 KBps
+1 KBps
+0 KBps
+1 KBps
+1 KBps
+1 KBps
+1 KBps
+0 KBps
+1 KBps
+1 KBps
+1 KBps
+1 KBps
+2 KBps
+1 KBps
+0 KBps
+1 KBps
+1 KBps
+1 KBps
+1 KBps
+1 KBps
+0 KBps
+2 KBps
+0 KBps
+1 KBps
+1 KBps
+1 KBps
+0 KBps
+1 KBps
+2 KBps
+0 KBps
+1 KBps
+1 KBps
+0 KBps
+1 KBps
+0 KBps
+1 KBps
+0 KBps
+1 KBps
+0 KBps
+1 KBps
+2 KBps
+0 KBps
+0 KBps
+0 KBps
+0 KBps
+0 KBps
+0 KBps
+0 KBps
+0 KBps
+1 KBps
+0 KBps
+0 KBps
+2 KBps
+0 KBps
+1 KBps
+0 KBps
+0 KBps
+2 KBps
+0 KBps
+1 KBps
+1 KBps
+0 KBps
+1 KBps
+0 KBps
+0 KBps
+1 KBps
+0 KBps
+0 KBps
+1 KBps
+0 KBps
+Processed file: 
+	 479 packets 
+	 102727 bytes (0 MB) 
+	 1 files 
+	 1303496723  time of last packet in seconds   
+ishita@ishita-VPCEH25EN:~/Desktop$ 
+
