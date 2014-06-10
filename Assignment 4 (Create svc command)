@@ -1,0 +1,13 @@
+Create the .sh file. Save it and name it according to your command. Say svc.sh
+
+Change its mode. 
+Give it execute permission. (chmod +x svc.sh)
+Run it. (sh svc.sh)
+
+Text file gets created.
+
+Copy the .sh file to /usr/bin. (sudo cp svc.sh /usr/bin)
+
+Command svc gets created. 
+Now you can use it from any directory.
+
